@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video with Subtitles</title>
+</head>
+<body>
+    <audio controls style="display: none;">
+        <source src="test.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    
+    <video controls width="300">
+        <source src="ShortTemplate_0.mp4" type="video/mp4">
+        <track src="test.vtt" kind="subtitles" srclang="en" label="English">
+        Your browser does not support the video tag.
+    </video>
+</body>
+<script>
+    var video = document.querySelector('video');
+    var audio = document.querySelector('audio');
+
+    video.onplay = function() {
+        audio.play();
+    }
+
+    video.onpause = function() {
+        audio.pause();
+    }
+
+    video.onended = function() {
+        audio.pause();
+    };
+</script>
+</html>

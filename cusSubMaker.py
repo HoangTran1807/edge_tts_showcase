@@ -3,16 +3,16 @@ class SubMaker:
         self.subs = []
 
     def create_sub(self, time_range, text):
-        # time_range là tuple (offset, duration) với đơn vị hiện tại có thể là micro giây
+        # time_range là tuple (offset, duration) với đơn vị là micro * 10
         start, duration = time_range
         
-        # Chuyển đổi micro giây sang mili giây
-        start_ms = start // 1000
-        duration_ms = duration // 1000
-        
-        # Giới hạn duration tối đa để tránh kéo dài
-        duration_ms = min(duration_ms, 2000)  # Giới hạn tối đa 2 giây nếu cần
+        # Chuyển đổi giá trị từ micro * 10 sang mili giây
+        start_ms = start // 10000  # Chia cho 10 để chuyển sang micro giây
+        duration_ms = duration // 10000  # Tương tự cho duration
 
+        # Giới hạn duration tối đa nếu cần
+        duration_ms = min(duration_ms, 2000)  # Giới hạn tối đa 2 giây
+        
         end_ms = start_ms + duration_ms
         self.subs.append((start_ms, end_ms, text))
 

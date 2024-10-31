@@ -82,6 +82,10 @@ async def StreamingWithSubmaker(text, voice):
         file.write(submaker.generate_subs())
 
 
+def readStory():
+    with open('story.txt', 'r') as file:
+        return file.read()
+
 def main():
     try:
         # list all voices
@@ -91,7 +95,8 @@ def main():
         #asyncio.run(find_voice(locale='en-US'))
 
         # basic tts
-        asyncio.run(StreamingWithSubmaker(TEXT, VOICE))
+        text = readStory()
+        asyncio.run(StreamingWithSubmaker(text, VOICE))
     except Exception as e:
         print(e)
     pass
